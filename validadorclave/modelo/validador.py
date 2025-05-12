@@ -44,3 +44,19 @@ class ReglaValidacion(ABC):
     @abstractmethod
     def es_valida(self, clave):
         pass
+
+class ReglaValidacionGanimedes(ReglaValidacion):
+    def __init__(self):
+        super().__init__(8)
+
+    def contiene_caracter_especial(self, clave):
+        if not any(c in {'@', '_', '#', '$', '%'} for c in clave):
+            raise CaracterEspecialInvalidoError()
+
+    def es_valida(self, clave):
+        self._validar_longitud(clave)
+        self._contiene_mayuscula(clave)
+        self._contiene_minuscula(clave)
+        self._contiene_numero(clave)
+        self.contiene_caracter_especial(clave)
+        return True
