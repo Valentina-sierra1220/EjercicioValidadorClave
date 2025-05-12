@@ -88,3 +88,10 @@ class ReglaValidacionCalisto(ReglaValidacion):
         self._contiene_numero(clave)
         self.contiene_calisto(clave)
         return True
+
+class Validador:
+    def __init__(self, regla):
+        self.regla = regla
+
+    def es_valida(self, clave):
+        return self.regla.es_valida(clave)
